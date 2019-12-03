@@ -19,6 +19,8 @@ SHOW VARIABLES LIKE "secure_file_priv";
 secure_file_priv=""
 */
 
+원하는 경로에 (Errcode: 13 - Permission denied) 해결책 https://dreamlog.tistory.com/563
+
 SELECT * FROM product
 INTO OUTFILE '/tmp/product.txt'
 CHARACTER SET 'UTF8'
@@ -33,4 +35,6 @@ INTO TABLE product
 character set 'UTF8'
 fields TERMINATED by ','
 LINES TERMINATED by '\r\n';
+
+단 /tmp/product.txt, /tmp/sale.txt 소유자는 mysql.mysql 삭제 필요
 """
