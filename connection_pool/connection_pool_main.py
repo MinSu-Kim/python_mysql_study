@@ -37,4 +37,5 @@ if __name__ == "__main__":
     #
 
     explicitly_connection_pool()
+    aa = ExplicitlyConnectionPool()
     implicitly_connection_pool()
