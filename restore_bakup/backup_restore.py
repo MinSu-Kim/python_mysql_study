@@ -11,7 +11,7 @@ class BackupRestore:
         LINES TERMINATED by '\r\n'
         """
 
-    def __init__(self, source_dir='/tmp/', data_dir='data/'):
+    def __init__(self, source_dir='/tmp/', data_dir='/tmp/'):
         self.source_dir = source_dir
         self.data_dir = data_dir
 
@@ -52,12 +52,12 @@ class BackupRestore:
                 return
             # restore_sql = "LOAD DATA LOCAL INFILE '{}' INTO TABLE {} {}".format(data_path, table_name, BackupRestore.OPTION) #windows
             restore_sql = "LOAD DATA INFILE '{}' INTO TABLE {} {}".format(data_path, table_name, BackupRestore.OPTION)         #ubuntu
-            print("restore_sql ", restore_sql)
             cursor.execute(restore_sql)
             conn.commit()
             print(table_name, "restore complete!")
         except Error as err:
             print(err)
+            print(table_name, "restore Fail!")
         finally:
             if conn.is_connected():
                 cursor.close()
