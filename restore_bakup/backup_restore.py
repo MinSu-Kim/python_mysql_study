@@ -5,7 +5,7 @@ from mysql.connector import Error
 from connection_pool.connection_pool_study02 import ExplicitlyConnectionPool
 
 
-class BackupRestore2:
+class BackupRestore:
     OPTION = """
         CHARACTER SET 'UTF8'
         FIELDS TERMINATED by ','
@@ -22,13 +22,13 @@ class BackupRestore2:
             conn = ExplicitlyConnectionPool.get_instance().get_connection()
             cursor = conn.cursor()
             source_path = self.source_dir + filename
-            print('source_path =', source_path)
+            # print('source_path =', source_path)
 
             if os.path.exists(source_path):
                 os.remove(source_path)
 
-            backup_sql = "SELECT * FROM {} INTO OUTFILE '{}' {}".format(table_name, source_path, BackupRestore2.OPTION)
-            print("backup_sql ", backup_sql)
+            backup_sql = "SELECT * FROM {} INTO OUTFILE '{}' {}".format(table_name, source_path, BackupRestore.OPTION)
+            # print("backup_sql ", backup_sql)
             cursor.execute(backup_sql)
 
             print(table_name, "backup complete!")
@@ -50,7 +50,7 @@ class BackupRestore2:
                 print("파일 '{}' 이 존재하지 않음".format(data_path))
                 return
             restore_sql = "LOAD DATA INFILE '{}' INTO TABLE {} {}".format(data_path, table_name,
-                                                                          BackupRestore2.OPTION)  # ubuntu
+                                                                          BackupRestore.OPTION)  # ubuntu
             cursor.execute(restore_sql)
             conn.commit()
             print(table_name, "restore complete!")

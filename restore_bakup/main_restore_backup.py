@@ -1,20 +1,10 @@
-import os
-import shutil
-
 from restore_bakup.backup_restore import BackupRestore
-from restore_bakup.backup_restore2 import BackupRestore2
 
 if __name__ == "__main__":
-    # backup_restore = BackupRestore()
+    backup_restore = BackupRestore()
     # backup_restore.data_backup('product')
     # backup_restore.data_backup('sale')
-    # backup_restore.data_restore('product')
-    # backup_restore.data_restore('sale')
-    # shutil.copyfile('/tmp/product.txt', 'data/product2.txt')
 
-    backup_restore = BackupRestore2()
-    # backup_restore.data_backup('product')
-    # backup_restore.data_backup('sale')
     backup_restore.data_restore('product')
     backup_restore.data_restore('sale')
 
