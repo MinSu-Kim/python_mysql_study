@@ -24,6 +24,9 @@ class BackupRestore2:
             source_path = self.source_dir + filename
             print('source_path =', source_path)
 
+            if os.path.exists(source_path):
+                os.remove(source_path)
+
             backup_sql = "SELECT * FROM {} INTO OUTFILE '{}' {}".format(table_name, source_path, BackupRestore2.OPTION)
             print("backup_sql ", backup_sql)
             cursor.execute(backup_sql)
