@@ -36,21 +36,4 @@ secure_file_priv=""
 
 MySQL 재실행 후 외부 파일 읽기가 정상동작하는 것을 확인
 
-
-SELECT * FROM product
-INTO OUTFILE '/tmp/product.txt'
-CHARACTER SET 'UTF8'
-FIELDS TERMINATED by ','
-LINES TERMINATED by '\r\n';
-
-delete from product;
-select * from product;
-
-LOAD DATA LOCAL INFILE '/tmp/product.txt'
-INTO TABLE product
-character set 'UTF8'
-fields TERMINATED by ','
-LINES TERMINATED by '\r\n';
-
-단 /tmp/product.txt, /tmp/sale.txt 소유자는 mysql.mysql 삭제 필요
 """
