@@ -20,6 +20,14 @@ secure_file_priv=""
 */
 
 원하는 경로에 (Errcode: 13 - Permission denied) 해결책 https://dreamlog.tistory.com/563
+/etc/apparmor.d/usr.sbin.mysqld를 편집
+
+추가
+**/home/hyunmu/DB/sampdb/ r, 
+/home/hyunmu/DB/sampdb/* rw,**
+
+MySQL 재실행 후 외부 파일 읽기가 정상동작하는 것을 확인
+
 
 SELECT * FROM product
 INTO OUTFILE '/tmp/product.txt'
