@@ -62,6 +62,7 @@ class DbInit:
             cursor.close()
             conn.close()
 
+
     def service(self):
         self.__create_database()
         self.__create_table()
