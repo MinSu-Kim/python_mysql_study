@@ -1,10 +1,13 @@
 import inspect
 import pandas as pd
 
+from dml.create_procedure import create_procedure
 from dml.dml_insert_update_delete import insert_product, insert_products, update_product, delete_product
+from dml.dml_procedure import call_sale_stat_sp, call_order_price_by_issale
 from dml.dml_select import query_with_fetchone, query_with_fetchall, query_with_fetchall2, \
     query_with_fetchall_by_code, query_with_fetchmany
 from dml.connection_pool import ConnectionPool
+from dml.transaction_test import transaction_fail1, transaction_fail2, transaction_success
 
 product_select_sql = "select * from product"
 sale_select_sql = "select * from sale"
@@ -105,10 +108,23 @@ def delete_test():
         print(code, " ", name)
 
 
+def transaction_test():
+    transaction_fail1()
+    transaction_fail2()
+    transaction_success()
+
+
 if __name__ == "__main__":
     # connection_pool_test()
     # select_test()
     # insert_test()
     # update_test()
+    # delete_test()
 
-    delete_test()
+    # transaction_test()
+    # create_procedure()
+    call_sale_stat_sp('proc_sale_stat')
+    print()
+    call_order_price_by_issale('proc_saledetail_orderby', False)
+    print()
+    call_order_price_by_issale('proc_saledetail_orderby', True)
